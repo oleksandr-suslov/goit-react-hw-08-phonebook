@@ -1,13 +1,18 @@
-import React, { Component } from "react";
+import { Component } from "react";
+// import shortid from "shortid";
 import Button from "../Button/Button";
 
 import styles from "./ContactForm.module.css";
+
+const shortid = require("shortid");
 
 export default class ContactForm extends Component {
   state = {
     name: "",
     number: "",
   };
+  nameInputId = shortid.generate();
+  numberInputId = shortid.generate();
 
   handleChange = (e) => {
     const { name, value } = e.currentTarget;
@@ -16,7 +21,7 @@ export default class ContactForm extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.onSubmit({ ...this.state, id: shortid.generate() });
     this.reset();
   };
 
@@ -27,7 +32,7 @@ export default class ContactForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className={styles.contactForm}>
-        <label className={styles.inputLabel}>
+        <label className={styles.inputLabel} htmlFor={this.nameInputId}>
           Name
           <input
             type="text"
@@ -38,9 +43,10 @@ export default class ContactForm extends Component {
             value={this.state.name}
             onChange={this.handleChange}
             className={styles.input}
+            id={this.nameInputId}
           />
         </label>
-        <label className={styles.inputLabel}>
+        <label className={styles.inputLabel} htmlFor={this.numberInputId}>
           Number
           <input
             type="tel"
@@ -51,10 +57,11 @@ export default class ContactForm extends Component {
             value={this.state.number}
             onChange={this.handleChange}
             className={styles.input}
+            id={this.numberInputId}
           />
         </label>
 
-        <Button name="Add contact" type="submit" />
+        <Button name="Add contact" type="submit" id={this.nameInputId} />
       </form>
     );
   }
