@@ -1,0 +1,16 @@
+.contactForm {
+  justify-items: start;
+  width: 320px;
+  padding: 10px;
+  border: 1px solid rgb(8, 8, 8);
+  margin-left: 20px;
+}
+.inputLabel {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.input {
+  width: 300px;
+  margin-top: 10px;
+}
