@@ -1,13 +1,12 @@
 {
-  "name": "goit-react-hw-02-phonebook",
+  "name": "goit-react-hw-03-phonebook",
   "version": "0.1.0",
-  "homepage": "https://oleksandr-suslov.github.io/goit-react-hw-02-phonebook",
+  "homepage": "https://oleksandr-suslov.github.io/goit-react-hw-03-phonebook",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "@types/shortid": "^0.0.29",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",

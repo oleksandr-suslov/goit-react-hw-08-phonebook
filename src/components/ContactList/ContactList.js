@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { ReactComponent as DeleteIcon } from "../icons/bin.svg";
 import Button from "../Button/Button";
 import styles from "./ContactList.module.css";
 
@@ -20,6 +21,7 @@ export default class ContactList extends Component {
               clickOnBtn={this.removeContactId}
               id={item.id}
             />
+            <DeleteIcon width="40" height="40" fill="green" />
           </li>
         ))}
       </ul>
