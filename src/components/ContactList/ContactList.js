@@ -20,8 +20,10 @@ export default class ContactList extends Component {
               name={this.props.nameBtn}
               clickOnBtn={this.removeContactId}
               id={item.id}
+              children={
+                <DeleteIcon width="20" height="20" fill="rgb(71, 71, 71)" />
+              }
             />
-            <DeleteIcon width="40" height="40" fill="green" />
           </li>
         ))}
       </ul>
