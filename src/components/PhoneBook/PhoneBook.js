@@ -27,9 +27,10 @@ export default class PhoneBook extends Component {
   };
 
   addContact = (newContact) => {
-    const dublicateName = this.state.contacts
-      .map((cont) => cont.name.toLowerCase())
-      .includes(newContact.name.toLowerCase());
+    const dublicateName = this.state.contacts.some(
+      (cont) => cont.name.toLowerCase() === newContact.name.toLowerCase()
+    );
+
     if (dublicateName) {
       alert(`${newContact.name} is already in contacts`);
     } else {
