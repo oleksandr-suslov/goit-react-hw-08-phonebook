@@ -1,68 +1,78 @@
-import { Component } from "react";
-// import shortid from "shortid";
+import { useState } from "react";
 import Button from "../Button/Button";
 
 import styles from "./ContactForm.module.css";
 
 const shortid = require("shortid");
 
-export default class ContactForm extends Component {
-  state = {
-    name: "",
-    number: "",
-  };
-  nameInputId = shortid.generate();
-  numberInputId = shortid.generate();
+export default function ContactForm(props) {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
-  handleChange = (e) => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
+  const nameInputId = shortid.generate();
+  const numberInputId = shortid.generate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case "name":
+        setName(value);
+        break;
+      case "number":
+        setNumber(value);
+        break;
+      default:
+        return;
+    }
   };
 
-  handleSubmit = (evt) => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    this.props.onSubmit({ ...this.state, id: shortid.generate() });
-    this.reset();
+    props.onSubmit({
+      name: name,
+      number: number,
+      id: shortid.generate(),
+    });
+    reset();
   };
 
-  reset = () => {
-    this.setState({ name: "", number: "" });
+  const reset = () => {
+    setName("");
+    setNumber("");
   };
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit} className={styles.contactForm}>
-        <label className={styles.inputLabel} htmlFor={this.nameInputId}>
-          Name
-          <input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
-            value={this.state.name}
-            onChange={this.handleChange}
-            className={styles.input}
-            id={this.nameInputId}
-          />
-        </label>
-        <label className={styles.inputLabel} htmlFor={this.numberInputId}>
-          Number
-          <input
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-            required
-            value={this.state.number}
-            onChange={this.handleChange}
-            className={styles.input}
-            id={this.numberInputId}
-          />
-        </label>
+  return (
+    <form onSubmit={handleSubmit} className={styles.contactForm}>
+      <label className={styles.inputLabel} htmlFor={nameInputId}>
+        Name
+        <input
+          type="text"
+          name="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          required
+          value={name}
+          onChange={handleChange}
+          className={styles.input}
+          id={nameInputId}
+        />
+      </label>
+      <label className={styles.inputLabel} htmlFor={numberInputId}>
+        Number
+        <input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          required
+          value={number}
+          onChange={handleChange}
+          className={styles.input}
+          id={numberInputId}
+        />
+      </label>
 
-        <Button name="Add contact" type="submit" id={this.nameInputId} />
-      </form>
-    );
-  }
+      <Button name="Add contact" type="submit" id={nameInputId} />
+    </form>
+  );
 }
