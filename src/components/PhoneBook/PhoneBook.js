@@ -41,30 +41,30 @@ export default function PhoneBook() {
   const [find, setFind] = useState("");
 
   const deleteContact = (contactId) => {
-      setContacts((prevState) =>
-        prevState.filter((contact) => contact.id !== contactId)
-      );
-    },
-    addContact = (newContact) => {
-      const dublicateName = contacts.some(
-        (cont) => cont.name.toLowerCase() === newContact.name.toLowerCase()
-      );
+    setContacts((prevState) =>
+      prevState.filter((contact) => contact.id !== contactId)
+    );
+  };
+  const addContact = (newContact) => {
+    const dublicateName = contacts.some(
+      (cont) => cont.name.toLowerCase() === newContact.name.toLowerCase()
+    );
 
-      if (dublicateName) {
-        alert(`${newContact.name} is already in contacts`);
-      } else {
-        setContacts((prevState) => [...prevState, newContact]);
-      }
-    },
-    changeFilter = (data) => {
-      setFind(data);
-    },
-    findContact = () => {
-      const nameToLowerCase = find.toLowerCase();
-      return contacts.filter((contact) =>
-        contact.name.toLowerCase().includes(nameToLowerCase)
-      );
-    };
+    if (dublicateName) {
+      alert(`${newContact.name} is already in contacts`);
+    } else {
+      setContacts((prevState) => [...prevState, newContact]);
+    }
+  };
+  const changeFilter = (data) => {
+    setFind(data);
+  };
+  const findContact = () => {
+    const nameToLowerCase = find.toLowerCase();
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(nameToLowerCase)
+    );
+  };
   // useEffect(
   //   () => window.localStorage.setItem("contacts", JSON.stringify(contacts)),
   //   [contacts]
