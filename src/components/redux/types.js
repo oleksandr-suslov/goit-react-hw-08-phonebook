@@ -1,4 +1,4 @@
 const ADD = "contact/Add";
 const DELETE = "contact/Delete";
-
-export { ADD, DELETE };
+const FILTER = "contact/Filter";
+export { ADD, DELETE, FILTER };

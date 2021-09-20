@@ -1,19 +1,24 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeContact } from "../redux/actions";
 
 import { ReactComponent as DeleteIcon } from "../icons/bin.svg";
 import Button from "../Button/Button";
 import styles from "./ContactList.module.css";
 
-export default function ContactList({ arr, nameBtn, onSubmit }) {
+export default function ContactList({ nameBtn }) {
   const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
+  const filter = useSelector((state) => state.filter);
   const deleteContact = (contactId) => {
     dispatch(removeContact(contactId));
   };
 
+  const onFilter = filter
+    ? contacts.filter((contact) => contact.name.toLowerCase().includes(filter))
+    : contacts;
   return (
     <ul className={styles.list}>
-      {arr.map((item) => (
+      {onFilter.map((item) => (
         <li className={styles.item} key={item.id}>
           <span className={styles.itemName}>{item.name}:</span>
           <span className={styles.itemPhone}> {item.number}</span>

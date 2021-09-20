@@ -1,4 +1,4 @@
-import { ADD, DELETE } from "./types";
+import { ADD, DELETE, FILTER } from "./types";
 
 const addNewContact = ({ name, number, id }) => ({
   type: ADD,
@@ -10,4 +10,9 @@ const removeContact = (id) => ({
   payload: { id },
 });
 
-export { addNewContact, removeContact };
+const filterContact = (name) => ({
+  type: FILTER,
+  payload: { name },
+});
+
+export { addNewContact, removeContact, filterContact };
