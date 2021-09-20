@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addNewContact } from "../redux/actions";
 import Button from "../Button/Button";
 
 import styles from "./ContactForm.module.css";
@@ -11,6 +13,7 @@ export default function ContactForm(props) {
 
   const nameInputId = shortid.generate();
   const numberInputId = shortid.generate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,11 +31,13 @@ export default function ContactForm(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    props.onSubmit({
-      name: name,
-      number: number,
-      id: shortid.generate(),
-    });
+    dispatch(
+      addNewContact({
+        name: name,
+        number: number,
+        id: shortid.generate(),
+      })
+    );
     reset();
   };
 

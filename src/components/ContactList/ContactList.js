@@ -1,8 +1,16 @@
+import { useDispatch } from "react-redux";
+import { removeContact } from "../redux/actions";
+
 import { ReactComponent as DeleteIcon } from "../icons/bin.svg";
 import Button from "../Button/Button";
 import styles from "./ContactList.module.css";
 
 export default function ContactList({ arr, nameBtn, onSubmit }) {
+  const dispatch = useDispatch();
+  const deleteContact = (contactId) => {
+    dispatch(removeContact(contactId));
+  };
+
   return (
     <ul className={styles.list}>
       {arr.map((item) => (
@@ -13,7 +21,7 @@ export default function ContactList({ arr, nameBtn, onSubmit }) {
             name={nameBtn}
             clickOnBtn={(evt) => {
               evt.preventDefault();
-              onSubmit(evt.currentTarget.id);
+              deleteContact(evt.currentTarget.id);
             }}
             id={item.id}
             children={
