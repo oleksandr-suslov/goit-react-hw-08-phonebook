@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { filterContact } from "../redux/actions";
+import { filterContact } from "../../redux/actions";
 import styles from "./Filter.module.css";
 
 export default function Filter() {
@@ -11,7 +11,7 @@ export default function Filter() {
   };
 
   return (
-    <form className={styles.contactForm}>
+    <div className={styles.contactForm}>
       <label className={styles.inputLabel}>
         Find contact by name
         <input
@@ -22,6 +22,6 @@ export default function Filter() {
           required
         />
       </label>
-    </form>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 {
   "name": "goit-react-hw-06-phonebook",
   "version": "0.1.0",
-  "homepage": "https://oleksandr-suslov.github.io/goit-react-hw-06-phonebooknpm",
+  "homepage": "https://oleksandr-suslov.github.io/goit-react-hw-06-phonebook",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
@@ -13,6 +13,7 @@
     "react-redux": "^7.2.5",
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
+    "redux-persist": "^6.0.0",
     "shortid": "^2.2.16",
     "web-vitals": "^1.1.2"
   },

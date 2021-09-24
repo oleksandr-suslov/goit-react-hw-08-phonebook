@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeContact } from "../redux/actions";
+import { removeContact } from "../../redux/actions";
 
-import { ReactComponent as DeleteIcon } from "../icons/bin.svg";
+import { ReactComponent as DeleteIcon } from "../../icons/bin.svg";
 import Button from "../Button/Button";
 import styles from "./ContactList.module.css";
 
@@ -18,10 +18,12 @@ export default function ContactList({ nameBtn }) {
     : contacts;
   return (
     <ul className={styles.list}>
+      
       {onFilter.map((item) => (
         <li className={styles.item} key={item.id}>
           <span className={styles.itemName}>{item.name}:</span>
           <span className={styles.itemPhone}> {item.number}</span>
+          
           <Button
             name={nameBtn}
             clickOnBtn={(evt) => {
@@ -29,12 +31,12 @@ export default function ContactList({ nameBtn }) {
               deleteContact(evt.currentTarget.id);
             }}
             id={item.id}
-            children={
+           >
               <DeleteIcon width="20" height="20" fill="rgb(71, 71, 71)" />
-            }
-          />
+            </Button>
         </li>
       ))}
+
     </ul>
   );
 }
