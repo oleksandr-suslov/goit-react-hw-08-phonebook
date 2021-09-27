@@ -7,7 +7,8 @@ import styles from "./ContactList.module.css";
 
 export default function ContactList({ nameBtn }) {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => 
+    state.contacts);
   const filter = useSelector((state) => state.filter);
   const deleteContact = (contactId) => {
     dispatch(removeContact(contactId));

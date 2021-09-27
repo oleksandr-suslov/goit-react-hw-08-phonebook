@@ -11,8 +11,7 @@ export default function ContactForm(props) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
-  const nameInputId = shortid.generate();
-  const numberInputId = shortid.generate();
+
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -48,7 +47,7 @@ export default function ContactForm(props) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.contactForm}>
-      <label className={styles.inputLabel} htmlFor={nameInputId}>
+      <label className={styles.inputLabel} >
         Name
         <input
           type="text"
@@ -59,10 +58,10 @@ export default function ContactForm(props) {
           value={name}
           onChange={handleChange}
           className={styles.input}
-          id={nameInputId}
+          
         />
       </label>
-      <label className={styles.inputLabel} htmlFor={numberInputId}>
+      <label className={styles.inputLabel} >
         Number
         <input
           type="tel"
@@ -73,11 +72,11 @@ export default function ContactForm(props) {
           value={number}
           onChange={handleChange}
           className={styles.input}
-          id={numberInputId}
+          
         />
       </label>
 
-      <Button name="Add contact" type="submit" id={nameInputId} />
+      <Button name="Add contact" type="submit"  />
     </form>
   );
 }
