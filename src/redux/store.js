@@ -15,6 +15,7 @@ import contactsReduser from "./reducer";
 const contactsPersistConfig = {
   key: "phonebook",
   storage,
+  whitelist: ["contacts"],
 };
 
 const persistedReducer = persistReducer(contactsPersistConfig, contactsReduser);
