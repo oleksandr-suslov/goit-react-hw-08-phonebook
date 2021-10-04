@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeContact } from "../../redux/actions";
+import { removeContact } from "../../redux/operations";
+// import {getContacts} from '../../redux/contacts-selectors'
 
 import { ReactComponent as DeleteIcon } from "../../icons/bin.svg";
 import Button from "../Button/Button";
@@ -7,8 +8,9 @@ import styles from "./ContactList.module.css";
 
 export default function ContactList({ nameBtn }) {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => 
-    state.contacts);
+  const contacts = useSelector((state) => state.contacts);
+// console.log(getContacts())
+
   const filter = useSelector((state) => state.filter);
   const deleteContact = (contactId) => {
     dispatch(removeContact(contactId));

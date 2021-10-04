@@ -1,38 +1,50 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { addNewContact, removeContact, filterContact } from "./actions";
+import { filterContact } from "./actions";
+import { fetchContacts, addContacts, removeContact } from "./operations";
 
-const contacts = createReducer(
-  [
-    { name: "David", number: "3235-43-21", id: "12" },
-    { name: "Rony", number: "3235-43-51", id: "13" },
-    { name: "Bob", number: "3235-43-81", id: "14" },
-    { name: "Ivan", number: "3235-43-91", id: "15" },
-    { name: "Jhon", number: "3235-43-51", id: "16" },
-    { name: "Clark", number: "3235-43-21", id: "17" },
+const getContacts = createReducer([], {
+  // [fetchContacts.fulfilled]: (_, action) => action.payload,
+  [fetchContacts.fulfilled]: (state, action) => [
+    ...state.contacts,
+    ...action.payload,
   ],
-  {
-    [addNewContact]: (state, { payload }) => {
-      const dublicateName = state.some(
-        (cont) => cont.name.toLowerCase() === payload.name.toLowerCase()
-      );
+  //   console.log(action.payload);
+  //   console.log(state);
+  // },
 
-      if (dublicateName) {
-        alert(`${[payload.name]} is already in contacts`);
-        return state;
-      } else {
-        return [...state, payload];
-      }
-    },
-    [removeContact]: (state, { payload }) =>
-      state.filter((contact) => contact.id !== payload),
-  }
-);
+  [addContacts.fulfilled]: (state, action) => {
+    const dublicateName = state.some(
+      (cont) => cont.name.toLowerCase() === action.payload.name.toLowerCase()
+    );
+
+    if (dublicateName) {
+      alert(`${[action.payload.name]} is already in contacts`);
+      return state;
+    } else {
+      return [...state, action.payload];
+    }
+  },
+
+  [removeContact.fulfilled]: (state, action) =>
+    state.filter((el) => el.id !== action.payload),
+});
+
+const error = createReducer(null, {
+  [fetchContacts.rejected]: (state, action) => action.payload,
+  [fetchContacts.pending]: () => null,
+  [addContacts.rejected]: (state, action) => action.payload,
+  [addContacts.pending]: () => null,
+  [removeContact.rejected]: (state, action) => action.payload,
+  [removeContact.pending]: () => null,
+});
 
 const filter = createReducer("", {
-  [filterContact]: (state, { payload }) => payload,
+  [filterContact]: (state, action) => action.payload,
 });
+
 export default combineReducers({
-  contacts,
+  contacts: getContacts,
+  error,
   filter,
 });
