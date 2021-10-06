@@ -5,7 +5,6 @@ axios.defaults.baseURL = "http://localhost:3000";
 export async function getContacts() {
   try {
     const { data } = await axios.get("/contacts");
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);

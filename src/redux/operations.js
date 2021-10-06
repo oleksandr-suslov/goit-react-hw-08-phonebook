@@ -7,7 +7,6 @@ import {
 
 const fetchContacts = createAsyncThunk("contact/fetchContacts", async () => {
   const contacts = await getContacts();
-  console.log(contacts);
   return contacts;
 });
 

@@ -4,28 +4,9 @@ import { filterContact } from "./actions";
 import { fetchContacts, addContacts, removeContact } from "./operations";
 
 const getContacts = createReducer([], {
-  // [fetchContacts.fulfilled]: (_, action) => action.payload,
-  [fetchContacts.fulfilled]: (state, action) => [
-    ...state.contacts,
-    ...action.payload,
-  ],
-  //   console.log(action.payload);
-  //   console.log(state);
-  // },
+  [fetchContacts.fulfilled]: (state, action) => action.payload,
 
-  [addContacts.fulfilled]: (state, action) => {
-    const dublicateName = state.some(
-      (cont) => cont.name.toLowerCase() === action.payload.name.toLowerCase()
-    );
-
-    if (dublicateName) {
-      alert(`${[action.payload.name]} is already in contacts`);
-      return state;
-    } else {
-      return [...state, action.payload];
-    }
-  },
-
+  [addContacts.fulfilled]: (state, action) => [...state, action.payload],
   [removeContact.fulfilled]: (state, action) =>
     state.filter((el) => el.id !== action.payload),
 });
