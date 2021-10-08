@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { filterContact } from "../../redux/actions";
+import { filterContact } from "../../redux/phonebook/actions";
 import styles from "./Filter.module.css";
 
 export default function Filter() {

@@ -1,24 +1,22 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { removeContact } from "../../redux/operations";
-import {fetchContacts} from '../../redux/operations'
-import {getContacts} from '../../redux/contacts-selectors'
+
+import { removeContact, fetchContacts} from "../../redux/phonebook/operations";
+import { getContactsByFilter} from '../../redux/phonebook/contacts-selectors'
 import { ReactComponent as DeleteIcon } from "../../icons/bin.svg";
 import Button from "../Button/Button";
 import styles from "./ContactList.module.css";
 
 export default function ContactList({ nameBtn }) {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+
   useEffect(() => { dispatch(fetchContacts()) }, []);
-  const filter = useSelector((state) => state.filter);
   const deleteContact = (contactId) => {
     dispatch(removeContact(contactId));
   };
 
-  const onFilter = filter
-    ? contacts.filter((contact) => contact.name.toLowerCase().includes(filter))
-    : contacts;
+  const onFilter = useSelector(getContactsByFilter)
+    
   return (
     <ul className={styles.list}>
       

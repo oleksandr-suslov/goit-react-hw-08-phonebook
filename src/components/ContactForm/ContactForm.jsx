@@ -1,20 +1,18 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addContacts } from "../../redux/operations";
-import {getContacts} from '../../redux/contacts-selectors'
+import { addContacts } from "../../redux/phonebook/operations";
+import {getContacts} from '../../redux/phonebook/contacts-selectors'
 import Button from "../Button/Button";
 
 import styles from "./ContactForm.module.css";
-
-const shortid = require("shortid");
 
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
-
     const dispatch = useDispatch();
-  const contacts = useSelector( getContacts);
+  const contacts = useSelector(getContacts);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -28,7 +26,6 @@ export default function ContactForm() {
         return;
     }
   };
-
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -44,13 +41,12 @@ export default function ContactForm() {
         addContacts({
           name: name,
           number: number,
-          id: shortid.generate(),
-        })
+             })
       );
-
       reset();
     };
   }
+
   const reset = () => {
     setName("");
     setNumber("");

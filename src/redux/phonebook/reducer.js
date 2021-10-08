@@ -12,11 +12,14 @@ const getContacts = createReducer([], {
 });
 
 const error = createReducer(null, {
-  [fetchContacts.rejected]: (state, action) => action.payload,
+  [fetchContacts.rejected]: (state, action) =>
+    action.error.message ?? action.error,
   [fetchContacts.pending]: () => null,
-  [addContacts.rejected]: (state, action) => action.payload,
+  [addContacts.rejected]: (state, action) =>
+    action.error.message ?? action.error,
   [addContacts.pending]: () => null,
-  [removeContact.rejected]: (state, action) => action.payload,
+  [removeContact.rejected]: (state, action) =>
+    action.error.message ?? action.error,
   [removeContact.pending]: () => null,
 });
 
