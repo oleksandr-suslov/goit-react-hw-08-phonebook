@@ -7,7 +7,7 @@ export async function getContacts() {
     const { data } = await axios.get("/contacts");
     return data;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
@@ -16,7 +16,7 @@ export async function addContactRequest(newContact) {
     const { data } = await axios.post("/contacts", newContact);
     return data;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
 
@@ -25,6 +25,6 @@ export async function deleteContactRequest(id) {
     await axios.delete(`/contacts/${id}`);
     return id;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 }
