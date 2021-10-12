@@ -11,6 +11,15 @@ const getContacts = createReducer([], {
     state.filter((el) => el.id !== action.payload),
 });
 
+const error = createReducer(null, {
+  [fetchContacts.rejected]: (_, action) => action.payload,
+  [fetchContacts.pending]: () => null,
+  [addContacts.rejected]: (_, action) => action.payload,
+  [addContacts.pending]: () => null,
+  [removeContact.rejected]: (_, action) => action.payload,
+  [removeContact.pending]: () => null,
+});
+
 const filter = createReducer("", {
   [filterContact]: (state, action) => action.payload,
 });
@@ -18,4 +27,5 @@ const filter = createReducer("", {
 export default combineReducers({
   contacts: getContacts,
   filter,
+  error,
 });
