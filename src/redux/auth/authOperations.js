@@ -3,6 +3,7 @@ import {
   registerNewUser,
   loginUser,
   logOutUser,
+  getCurrentUser,
 } from "../../services/api-request";
 
 const register = createAsyncThunk(
@@ -10,8 +11,6 @@ const register = createAsyncThunk(
   async function (newUser, { rejectWithValue }) {
     try {
       const user = await registerNewUser(newUser);
-      // console.log("newUser", newUser);
-      // console.log("user", user);
       return user;
     } catch (error) {
       console.error(error.message);
@@ -25,8 +24,6 @@ const logIn = createAsyncThunk(
   async function (data, { rejectWithValue }) {
     try {
       const user = await loginUser(data);
-      // console.log("newUser", data);
-      // console.log("user", user);
       return user;
     } catch (error) {
       console.error(error.message);
@@ -46,16 +43,20 @@ const logOut = createAsyncThunk(
   }
 );
 
-// const removeContact = createAsyncThunk(
-//   "contact/delete",
-//   async function (id, { rejectWithValue }) {
-//     try {
-//       return await deleteContactRequest(id);
-//     } catch (error) {
-//       console.error(error.message);
-//       // console.log(error.data);
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
-export { register, logIn, logOut };
+const getCurrent = createAsyncThunk(
+  "auth/getCurrentUser",
+  async (_, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+      if (!token) {
+        return thunkAPI.rejectWithValue();
+      }
+      return await getCurrentUser(token);
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
+export { register, logIn, logOut, getCurrent };

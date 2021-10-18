@@ -1,11 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { register, logIn, logOut } from "./authOperations";
+import { register, logIn, logOut, getCurrent } from "./authOperations";
 
 const registerNewUser = createReducer(null, {
   [register.fulfilled]: (_, { payload }) => payload.user,
   [logIn.fulfilled]: (_, { payload }) => payload.user,
   [logOut.fulfilled]: () => null,
+  [getCurrent.fulfilled]: (_, { payload }) => payload.user,
 });
 
 const token = createReducer(null, {
@@ -21,17 +22,26 @@ const error = createReducer(null, {
   [logIn.pending]: () => null,
   [logOut.rejected]: (_, action) => action.payload,
   [logOut.pending]: () => null,
+  [getCurrent.rejected]: (_, action) => action.payload,
+  [getCurrent.pending]: () => null,
 });
 
 const isLoggedIn = createReducer(false, {
   [register.fulfilled]: () => true,
   [logIn.fulfilled]: () => true,
   [logOut.fulfilled]: () => false,
+  [getCurrent.fulfilled]: () => true,
 });
 
+const isUser = createReducer(false, {
+  [getCurrent.fulfilled]: (state, _) => true,
+  [getCurrent.rejected]: (state, _) => false,
+  [logOut.fulfilled]: () => false,
+});
 export default combineReducers({
   user: registerNewUser,
   token,
   error,
   isLoggedIn,
+  isUser,
 });
