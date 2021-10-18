@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+.footer {
+  position: absolute;
+  left: 50%;
+  bottom: 3%;
+}

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { Button } from '@material-ui/core';
 import { addContacts } from "../../redux/phonebook/operations";
 import {getContacts} from '../../redux/phonebook/contacts-selectors'
-import Button from "../Button/Button";
-
 import styles from "./ContactForm.module.css";
 
 export default function ContactForm() {
@@ -83,7 +83,7 @@ export default function ContactForm() {
         />
       </label>
 
-      <Button name="Add contact" type="submit"  />
+      <Button color="primary" variant="contained" type="submit"  > Add contact </Button>
     </form>
   );
 }

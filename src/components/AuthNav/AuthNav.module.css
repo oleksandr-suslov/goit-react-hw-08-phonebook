@@ -1,0 +1,20 @@
+.link {
+  padding: 10px 10px 10px 10px;
+  width: 120px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.3;
+  color: rgb(176, 200, 224);
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.link:not(:last-child) {
+  margin-right: 50px;
+}
+
+.link:hover,
+.link:focus {
+  color: rgba(233, 119, 12, 0.788);
+}
