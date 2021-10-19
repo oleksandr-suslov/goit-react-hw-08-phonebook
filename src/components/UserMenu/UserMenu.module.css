@@ -14,7 +14,8 @@
   color: rgb(213, 213, 224);
 }
 
-.mail {
+.name {
+  text-transform: capitalize;
   display: block;
   margin-top: 0;
   margin-right: 15px;

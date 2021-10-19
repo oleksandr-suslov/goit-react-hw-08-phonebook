@@ -1,18 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../redux/auth/authOperations";
-import { getUserEmail } from "../../redux/auth/authSelector";
+import { getUserName } from "../../redux/auth/authSelector";
 import styles from "./UserMenu.module.css";
 
 import { Button } from "@material-ui/core";
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const email = useSelector(getUserEmail);
+  const name = useSelector(getUserName);
 
   return (
     <div className={styles.userMenu}>
       <p className={styles.text}>Welcome,</p>
-      <p className={styles.mail}>{email}</p>
+      <p className={styles.name}>{name}</p>
       <Button
               variant="contained"
         type="button"
