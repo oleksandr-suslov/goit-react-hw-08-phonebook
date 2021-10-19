@@ -49,6 +49,7 @@ const getCurrent = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
+
       if (!token) {
         return thunkAPI.rejectWithValue();
       }

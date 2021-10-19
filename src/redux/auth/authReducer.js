@@ -7,6 +7,7 @@ const registerNewUser = createReducer(null, {
   [logIn.fulfilled]: (_, { payload }) => payload.user,
   [logOut.fulfilled]: () => null,
   [getCurrent.fulfilled]: (_, { payload }) => payload.user,
+  [getCurrent.fulfilled]: (_, { payload }) => payload,
 });
 
 const token = createReducer(null, {
@@ -34,10 +35,11 @@ const isLoggedIn = createReducer(false, {
 });
 
 const isUser = createReducer(false, {
-  [getCurrent.fulfilled]: (state, _) => true,
+  [getCurrent.fulfilled]: (state, _) => false,
   [getCurrent.rejected]: (state, _) => false,
-  [logOut.fulfilled]: () => false,
+  [getCurrent.pending]: (state, _) => true,
 });
+
 export default combineReducers({
   user: registerNewUser,
   token,

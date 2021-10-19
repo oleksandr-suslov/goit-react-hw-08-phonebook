@@ -14,7 +14,6 @@ const token = {
 export async function getContacts() {
   try {
     const { data } = await axios.get("/contacts");
-    console.log("getContacts", data);
     return data;
   } catch (error) {
     throw error;
@@ -61,7 +60,6 @@ export async function logOutUser() {
   try {
     const { data } = await axios.post("/users/logout");
     token.unset();
-    // console.log("registerNewUser", userData);
     return data;
   } catch (error) {
     throw error;

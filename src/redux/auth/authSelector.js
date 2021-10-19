@@ -6,6 +6,6 @@ const getToken = (state) => state.auth.token;
 
 const getAuthError = (state) => state.auth.error;
 
-// const getIsGetCurrentUser = (state) => state.auth.isGetCurrentUser;
+const getCurrentUser = (state) => state.auth.isUser;
 
-export { getIsLoggedIn, getUserEmail, getToken, getAuthError };
+export { getIsLoggedIn, getUserEmail, getToken, getAuthError, getCurrentUser };
