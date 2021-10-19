@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Button } from "@material-ui/core";
-import { removeContact, fetchContacts } from "../../redux/phonebook/operations";
-import { getContactsByFilter } from "../../redux/phonebook/contacts-selectors";
+import {
+  removeContact,
+  fetchContacts,
+} from "../../redux/phonebook/phonebookOperations";
+import { getContactsByFilter } from "../../redux/phonebook/phonebookSelectors";
 import { ReactComponent as DeleteIcon } from "../../icons/bin.svg";
 import styles from "./ContactList.module.css";
 
@@ -12,7 +15,7 @@ export default function ContactList({ nameBtn }) {
 
   useEffect(() => {
     dispatch(fetchContacts());
-  }, []);
+  }, [dispatch]);
   const deleteContact = (contactId) => {
     dispatch(removeContact(contactId));
   };

@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Button } from '@material-ui/core';
-import { addContacts } from "../../redux/phonebook/operations";
-import {getContacts} from '../../redux/phonebook/contacts-selectors'
+import { Button } from "@material-ui/core";
+import { addContacts } from "../../redux/phonebook/phonebookOperations";
+import { getContacts } from "../../redux/phonebook/phonebookSelectors";
 import styles from "./ContactForm.module.css";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -41,11 +41,11 @@ export default function ContactForm() {
         addContacts({
           name: name,
           number: number,
-             })
+        })
       );
       reset();
-    };
-  }
+    }
+  };
 
   const reset = () => {
     setName("");
@@ -54,7 +54,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.contactForm}>
-      <label className={styles.inputLabel} >
+      <label className={styles.inputLabel}>
         Name
         <input
           type="text"
@@ -65,10 +65,9 @@ export default function ContactForm() {
           value={name}
           onChange={handleChange}
           className={styles.input}
-          
         />
       </label>
-      <label className={styles.inputLabel} >
+      <label className={styles.inputLabel}>
         Number
         <input
           type="tel"
@@ -79,11 +78,13 @@ export default function ContactForm() {
           value={number}
           onChange={handleChange}
           className={styles.input}
-          
         />
       </label>
 
-      <Button color="primary" variant="contained" type="submit"  > Add contact </Button>
+      <Button color="primary" variant="contained" type="submit">
+        {" "}
+        Add contact{" "}
+      </Button>
     </form>
   );
 }

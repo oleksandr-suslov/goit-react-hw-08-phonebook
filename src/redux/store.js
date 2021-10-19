@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import contactsReduser from "./phonebook/reducer";
 import {
   persistStore,
   persistReducer,
@@ -12,6 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/authReducer";
+import contactsReduser from "./phonebook/phonebookReducer";
 
 const authPersistConfig = {
   key: "auth",

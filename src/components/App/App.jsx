@@ -1,16 +1,18 @@
-import { Switch, Redirect, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { useEffect, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Copyright } from "@material-ui/icons";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import Loader from "react-loader-spinner";
 
 import Nav from "../Nav/Nav";
 import Section from "../Section/Section";
+import PublicRoute from "../PublicRoute/PublicRoute";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import {
-  getIsLoggedIn,
+  // getIsLoggedIn,
   getCurrentUser,
-  getAuthError,
+  // getAuthError,
 } from "../../redux/auth/authSelector";
 import { getCurrent } from "../../redux/auth/authOperations";
 import styles from "./App.module.css";
@@ -29,7 +31,7 @@ const ContactsPage = lazy(() =>
 );
 
 export default function App() {
-  const isLoggedIn = useSelector(getIsLoggedIn);
+  // const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
   // const isError = useSelector(getAuthError);
   const isUser = useSelector(getCurrentUser);
@@ -40,7 +42,7 @@ export default function App() {
 
   return (
     <Section className={styles.sectionApp}>
-      <ToastContainer autoClose={2000} />
+      {/* <ToastContainer autoClose={2000} /> */}
       <Nav />
       {!isUser && (
         <Suspense
@@ -49,23 +51,22 @@ export default function App() {
           }
         >
           <Switch>
-            <Route path="/" exact>
+            <PublicRoute path="/" exact>
               <HomePage />
-            </Route>
+            </PublicRoute>
 
-            <Route path="/login" restricted>
-              <LoginPage />
-            </Route>
-
-            <Route path="/register" restricted>
+            <PublicRoute path="/register" restricted>
               <AuthPage />
-            </Route>
+            </PublicRoute>
 
-            <Route path="/contacts">
+            <PublicRoute path="/login" restricted>
+              <LoginPage />
+            </PublicRoute>
+
+            <PrivateRoute path="/contacts">
               <ContactsPage />
-            </Route>
+            </PrivateRoute>
           </Switch>
-          {isLoggedIn ? <Redirect to="/contacts" /> : <Redirect to="/" />}
         </Suspense>
       )}
       <div className={styles.footer}>
