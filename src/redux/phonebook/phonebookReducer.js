@@ -5,6 +5,7 @@ import {
   fetchContacts,
   addContacts,
   removeContact,
+  updateContact,
 } from "./phonebookOperations";
 
 const getContacts = createReducer([], {
@@ -21,6 +22,8 @@ const error = createReducer(null, {
   [addContacts.pending]: () => null,
   [removeContact.rejected]: (_, action) => action.payload,
   [removeContact.pending]: () => null,
+  [updateContact.rejected]: (_, action) => action.payload,
+  [updateContact.pending]: () => null,
 });
 
 const filter = createReducer("", {

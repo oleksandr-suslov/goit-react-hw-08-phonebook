@@ -3,6 +3,7 @@ import {
   getContacts,
   addContactRequest,
   deleteContactRequest,
+  updateContactRequest,
 } from "../../services/api-request";
 
 const fetchContacts = createAsyncThunk(
@@ -38,9 +39,19 @@ const removeContact = createAsyncThunk(
       return await deleteContactRequest(id);
     } catch (error) {
       console.error(error.message);
-      // console.log(error.data);
       return rejectWithValue(error.message);
     }
   }
 );
-export { fetchContacts, addContacts, removeContact };
+const updateContact = createAsyncThunk(
+  "contact/update",
+  async function (item, { rejectWithValue }) {
+    try {
+      return await updateContactRequest(item);
+    } catch (error) {
+      console.error(error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export { fetchContacts, addContacts, removeContact, updateContact };

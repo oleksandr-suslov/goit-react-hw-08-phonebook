@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
-import Section from "../Section/Section";
-import AuthNav from "../AuthNav/AuthNav";
-import { getIsLoggedIn } from "../../redux/auth/authSelector";
+import Section from "../components/Section/Section";
+import AuthNav from "../components/AuthNav/AuthNav";
+import { getIsLoggedIn } from "../redux/auth/authSelector";
 import styles from "./Page.module.css";
 
 export default function HomePage() {

@@ -55,7 +55,7 @@ const getCurrent = createAsyncThunk(
       }
       return await getCurrentUser(token);
     } catch (error) {
-      return error.message;
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

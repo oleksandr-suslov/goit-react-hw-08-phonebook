@@ -38,6 +38,16 @@ export async function deleteContactRequest(id) {
   }
 }
 
+export async function updateContactRequest({ id, name, number }) {
+  try {
+    const { data } = await axios.patch(`/contacts/${id}`, { name, number });
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function registerNewUser(userData) {
   try {
     const { data } = await axios.post("/users/signup", userData);

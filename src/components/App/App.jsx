@@ -18,16 +18,16 @@ import { getCurrent } from "../../redux/auth/authOperations";
 import styles from "./App.module.css";
 
 const HomePage = lazy(() =>
-  import("../page/HomePage" /* webpackChunkName: "home" */)
+  import("../../page/HomePage" /* webpackChunkName: "home" */)
 );
 const AuthPage = lazy(() =>
-  import("../page/AuthPage" /* webpackChunkName: "auth" */)
+  import("../../page/AuthPage" /* webpackChunkName: "auth" */)
 );
 const LoginPage = lazy(() =>
-  import("../page/LoginPage" /* webpackChunkName: "login" */)
+  import("../../page/LoginPage" /* webpackChunkName: "login" */)
 );
 const ContactsPage = lazy(() =>
-  import("../page/ContactsPage" /* webpackChunkName: "contacts" */)
+  import("../../page/ContactsPage" /* webpackChunkName: "contacts" */)
 );
 
 export default function App() {
@@ -60,7 +60,7 @@ export default function App() {
             </PublicRoute>
 
             <PublicRoute path="/login" restricted>
-              <LoginPage />
+            <LoginPage />
             </PublicRoute>
 
             <PrivateRoute path="/contacts">
