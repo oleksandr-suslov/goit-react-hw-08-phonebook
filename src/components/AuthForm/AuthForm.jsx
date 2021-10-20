@@ -77,15 +77,16 @@ export default function AuthForm({ titleForm, nameBtn, matchRoute="/register" })
         <h2 className={styles.formTitle}>{titleForm}</h2>
 
         {trueRoute && (
-          <label title="UserName" className={styles.formLabel}>
+          <label title="Name" className={styles.formLabel}>
             <AccountCircle className={styles.formIcons} />
-            <input
+                        <input
               type="text"
-              name={styles.userName}
+              name="userName"
               value={userName}
               className={styles.formInput}
               onChange={handleChange}
               autoComplete="off"
+              placeholder=" "
               required
             />
             <span className={styles.ariaLabel}>Name</span>
@@ -101,6 +102,7 @@ export default function AuthForm({ titleForm, nameBtn, matchRoute="/register" })
             className={styles.formInput}
             onChange={handleChange}
             autoComplete="off"
+            placeholder=" "
             required
           />
           <span className={styles.ariaLabel}>E-mail</span>
@@ -120,6 +122,7 @@ export default function AuthForm({ titleForm, nameBtn, matchRoute="/register" })
             onChange={handleChange}
             minLength={7}
             autoComplete="off"
+            placeholder=" "
             required
           />
           <span className={styles.ariaLabel}>Password</span>

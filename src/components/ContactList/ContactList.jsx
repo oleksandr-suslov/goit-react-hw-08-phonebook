@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { IconButton } from "@material-ui/core";
-
 import {
   removeContact,
   fetchContacts,
   // updateContact,
 } from "../../redux/phonebook/phonebookOperations";
 import { getContactsByFilter } from "../../redux/phonebook/phonebookSelectors";
-import { ContactModal } from "../ContactModal/ContactModal";
+// import { ContactModal } from "../ContactModal/ContactModal";
+// import { ReactComponent as UpdateIcon } from "../../icons/pencil.svg";
 import { ReactComponent as DeleteIcon } from "../../icons/bin.svg";
-import { ReactComponent as UpdateIcon } from "../../icons/pencil.svg";
 import styles from "./ContactList.module.css";
 
 export default function ContactList() {
-  const [openModal, setOpenModal] = useState(false);
-  const [id, setId] = useState();
+  // const [openModal, setOpenModal] = useState(false);
+  // const [id, setId] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,12 +29,13 @@ export default function ContactList() {
 
   return (
     <ul className={styles.list}>
-      {onFilter.map((item) => (
+
+            {onFilter.map((item) => (
         <li className={styles.item} key={item.id}>
           <span className={styles.itemName}>{item.name}:</span>
           <span className={styles.itemPhone}> {item.number}</span>
           <div>
-            <IconButton
+            {/* <IconButton
               type="button"
               onClick={(evt) => {
                 evt.preventDefault();
@@ -48,7 +48,7 @@ export default function ContactList() {
               id={item.id}
             >
               <UpdateIcon width="20" height="20" fill="rgb(71, 71, 71)" />
-            </IconButton>
+            </IconButton> */}
 
             <IconButton
               type="button"
@@ -60,8 +60,9 @@ export default function ContactList() {
             >
               <DeleteIcon width="20" height="20" fill="rgb(71, 71, 71)" />
             </IconButton>
+
           </div>
-          <ContactModal openModal={openModal} id={id} />
+          {/* <ContactModal openModal={openModal} id={id} /> */}
         </li>
       ))}
     </ul>
